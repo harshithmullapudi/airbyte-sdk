@@ -1,6 +1,6 @@
 {
   "name": "airbyte-sdk",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A sdk to manage Airbyte",
   "main": "./lib/cjs/main.js",
   "module": "./lib/esm/main.js",
