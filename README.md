@@ -20,6 +20,7 @@ When you want to handle Airbyte configurations through some automation or throug
 - [Configuration](#configuration)
 - [Classes and functions](#classes-functions)
 - [Contributing](#contributing)
+- [Example](#example)
 
 ## Install
 
@@ -61,3 +62,22 @@ You can go through the following [URL](https://harshithmullapudi.github.io/airby
 2. Create an issue if the issue is not already created, attach a tag [Bug, Improvement]
 3. Fork the repo, code and test thoroughly.
 4. Open a PR on the repo from your fork.
+
+## Examples
+
+```js
+var { setAirbyteHost, Source, WorkspaceModel } = require('airbyte-sdk');
+
+async function main() {
+  setAirbyteHost('http://localhost:8000');
+
+  const workspaceModel = await WorkspaceModel.createWorkspaceInstanceFromId(
+    '29cfb153-40a9-478a-a37c-f519560459b2',
+  );
+  const source = new Source(workspaceModel);
+  const allSources = await source.getAllSources();
+  console.log(allSources);
+}
+
+main();
+```
