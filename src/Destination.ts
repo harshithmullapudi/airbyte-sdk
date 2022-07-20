@@ -3,6 +3,7 @@ import {
   createDestination,
   deleteDestination,
   executeDestinationCheckConnection,
+  getDestination,
   listDestinationsForWorkspace,
   searchDestinations,
 } from './generated/AirbyteApi';
@@ -34,6 +35,16 @@ export class Destination extends Base {
     });
 
     return Destination.createDestinationInstances(allDestinations.destinations);
+  }
+
+  async getDestination(
+    destinationId: DestinationId,
+  ): Promise<DestinationModel> {
+    const destinationRead = await getDestination({
+      destinationId,
+    });
+
+    return DestinationModel.createDestinationInstance(destinationRead);
   }
 
   async searchDestinationByName(

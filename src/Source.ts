@@ -3,6 +3,7 @@ import {
   createSource,
   deleteSource,
   executeSourceCheckConnection,
+  getSource,
   listSourcesForWorkspace,
   searchSources,
 } from './generated/AirbyteApi';
@@ -34,6 +35,14 @@ export class Source extends Base {
     });
 
     return Source.createSourceInstances(allSources.sources);
+  }
+
+  async getSource(sourceId: SourceId): Promise<SourceModel> {
+    const sourceRead = await getSource({
+      sourceId,
+    });
+
+    return SourceModel.createSourceInstance(sourceRead);
   }
 
   async searchSourceByName(name: string): Promise<Array<SourceModel>> {
